@@ -132,6 +132,7 @@ public class ActivitiController {
      */
     @GetMapping("/update/{modelId}")
     public ModelAndView updateModel(@PathVariable String modelId) {
+        System.out.println("用户点击模型编辑");
         return new ModelAndView("redirect:/modeler.html?modelId=" + modelId);
     }
 
