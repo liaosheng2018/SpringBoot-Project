@@ -85,6 +85,17 @@
                 <a class="layui-btn layui-btn-xs" lay-event="deploy">部署</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                 <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="export">导出</a>
+                <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="form">表单配置</a>
+            </script>
+            <!-- 编辑节点弹出层-->
+            <script type="text/html" id="nodeDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="setting">配置</a>
+            </script>
+            <script type="text/html" id="node_table">
+                <div class="layui-col-md12" style="margin-left: 5px;">
+                    <table id="tb-node" lay-filter="tb-node"></table>
+                </div>
+
             </script>
 
             <!--    编辑弹出层-->
@@ -157,7 +168,7 @@
       ,{field: 'key', title: '流程Key', }
       ,{field: 'category', title: '流程分类', }
       ,{field: 'createTime', title: '创建时间', }
-      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:260}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:320}
     ]]
     ,parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
         console.log(res)
@@ -284,6 +295,34 @@
     } else if(obj.event ==='export'){
       console.log("点击导出")
       window.location.href ="http://localhost:8080/model/export/" + data.id
+    } else if(obj.event ==='form'){
+      console.log("点击表单配置")
+      layer.open({
+                type: 1,
+                title: '流程节点表单设置',
+                area: ['520px', '420px'],
+                content: $('#node_table').html()
+            });
+      table.render({
+    elem: '#tb-node'
+    ,url: 'http://localhost:8080/node/findModelAssociationNode/' + data.id
+    ,method: 'post'
+    ,cols: [[ //表头
+      {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+      ,{field: 'name', title: '流程节点名称', }
+      ,{field: 'formKey', title: '流程外置表单Key', }
+      ,{field: 'nodeTypeEnum', title: '节点类型', }
+      ,{fixed: 'right', title:'操作', toolbar: '#nodeDemo'}
+    ]]
+    ,parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
+        console.log("节点数据返回:" +res.data)
+                return {
+                    "code": 0, //解析接口状态
+                    "data": res.data //解析数据列表
+                };
+     }
+  });
+
     }
 
 
