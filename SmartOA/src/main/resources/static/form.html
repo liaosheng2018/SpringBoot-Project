@@ -81,7 +81,8 @@
             <table id="tb-book" lay-filter="tb-book"></table>
 
             <script type="text/html" id="barDemo">
-                <a class="layui-btn layui-btn-xs" lay-event="check">查看</a>
+                <a class="layui-btn layui-btn-xs" lay-event="check">查看表单</a>
+                <a class="layui-btn layui-btn-xs" lay-event="design">设计表单</a>
                 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
             </script>
@@ -93,28 +94,62 @@
 
             </script>
 
+            <!--    编辑content弹出层-->
+            <script type="text/html" id="content_form">
+                <div class="layui-col-md10" style="margin-left: 35px;margin-top: 20px">
+                    <form class="layui-form layui-form-pane" lay-filter="content_form" action="">
+                        <div class="layui-form-item" hidden="true">
+                            <label class="layui-form-label">Id</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="id"  lay-verify="required" placeholder="请输入表单id"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">请填写表单HTML样式</label>
+                            <div class="layui-input-block">
+                                <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="margin-top: 20px">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="contentForm">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </script>
+
             <!--    编辑弹出层-->
             <script type="text/html" id="edit_form">
                 <div class="layui-col-md10" style="margin-left: 35px;margin-top: 20px">
                     <form class="layui-form layui-form-pane" lay-filter="edit_form" action="">
+                        <div class="layui-form-item" hidden="true">
+                            <label class="layui-form-label">Id</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="id"  lay-verify="required" placeholder="请输入表单id"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">表单Key</label>
                             <div class="layui-input-block">
-                                <input type="text" name="formKey" required  lay-verify="required" placeholder="请输入表单Key"
+                                <input type="text" name="key" required  lay-verify="required" placeholder="请输入表单Key"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">表单名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="formName" required  lay-verify="required" placeholder="请输入表单名称"
+                                <input type="text" name="name" required  lay-verify="required" placeholder="请输入表单名称"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">表单描述</label>
                             <div class="layui-input-block">
-                                <input type="text" name="formDesc" required  lay-verify="required" placeholder="请输入表单描述"
+                                <input type="text" name="desc" required  lay-verify="required" placeholder="请输入表单描述"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -155,7 +190,6 @@
     elem: '#tb-book'
     ,height: 312
     ,url: 'http://localhost:8080/designer/form/page'
-    ,where: {page: '1', size: '10'}
     ,page: true //开启分页
     ,cols: [[ //表头
       {field: 'id', title: 'ID', sort: true, fixed: 'left'}
@@ -169,8 +203,8 @@
         console.log(res)
                 return {
                     "code": 0, //解析接口状态
-                    "count": res.totalData, //解析数据长度
-                    "data": res.list //解析数据列表
+                    "count": res.total, //解析数据长度
+                    "data": res.data.records //解析数据列表
                 };
      }
   });
@@ -201,12 +235,12 @@
              form.on('submit(formDemo)',function(messge){
                  console.log(messge);
                  var str={
-                                "processDesc":messge.field.processDesc,
-                                "processKey":messge.field.processKey,
-                                "processName":messge.field.processName
+                                "name":messge.field.name,
+                                "key":messge.field.key,
+                                "desc":messge.field.desc
                           };
                     $.ajax({
-                            url:"http://localhost:8080/model/insert",
+                            url:"http://localhost:8080/designer/form/insert",
                             type:"POST",
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
@@ -216,10 +250,16 @@
                                 if (msg.code === 200) {
                                     layer.msg("新增成功", {icon: 6});
                                   	layer.closeAll();
-                                    // 跳转至流程设计界面
-                                     window.location.href ="http://localhost:8080/modeler.html?modelId=" + msg.data
+                                  	// 重新加载
+                                  table.reload('tb-book', {
+                                    page: {
+                                      curr: 1 //重新从第 1 页开始
+                                    }
+                                  });
+
                                 } else {
                                     layer.msg("新增失败", {icon: 5});
+                                    layer.closeAll();
                                 }
                             }
                         })
@@ -239,25 +279,54 @@
   table.on('tool(tb-book)', function(obj){
     console.log(obj);
     var data = obj.data;
-    if(obj.event === 'deploy') {
+    if(obj.event === 'design') {
+         layer.open({
+            type: 1,
+            title: '编辑自定义表单HTML',
+            area: ['420px', '330px'],
+            content: $('#content_form').html()
+       })
+      form.render()//更新渲染表单
+      form.val('content_form',{
+                //填充表单,
+               content:data.content,
+               id:data.id
+       })
 
+        form.on('submit(contentForm)',function(messge){
+                 var str={
+                                "id":messge.field.id,
+                                "content":messge.field.content
+                          };
                     $.ajax({
-                            url:"http://localhost:8080/model/deploy/" + data.id,
+                            url:"http://localhost:8080/designer/form/update",
                             type:"POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(str),
                             success:function (msg) {
-                                console.log(msg);
-                                // var returnCode = msg.returnValue//取得返回数据（Sting类型的字符串）的信息进行取值判断
+
                                 if (msg.code === 200) {
-                                    //layer.closeAll('loading');
-                                    //layer.load(2);
-                                    layer.msg("模型部署成功:" + msg.data, {icon: 6});
+                                    layer.msg("新增成功", {icon: 6});
                                   	layer.closeAll();
-                                    // 加载层 - 风格
+                                    // 重新加载
+                                    table.reload('tb-book', {
+                                        page: {
+                                          curr: 1 //重新从第 1 页开始
+                                        }
+                                      });
+
                                 } else {
-                                    layer.msg("模型部署失败", {icon: 5});
+                                    layer.msg("新增失败", {icon: 5});
+                                    layer.closeAll();
                                 }
                             }
                         })
+                        return false;//阻止表单跳转,网页url不显示提交的参数。
+                    })
+
+
+
 
 
     } else if(obj.event === 'del'){
@@ -266,61 +335,87 @@
         layer.close(index);
         console.log('id is:', data.id)
          $.ajax({
-                            url:"http://localhost:8080/model/delete?processId="+data.id,
+                            url:"http://localhost:8080/designer/form/delete/"+data.id,
                             success:function (msg) {
                                 console.log(msg);
-                                // var returnCode = msg.returnValue//取得返回数据（Sting类型的字符串）的信息进行取值判断
-                                if (msg) {
-                                    //layer.closeAll('loading');
-                                    //layer.load(2);
-                                    layer.msg("修改成功", {icon: 6});
+                                if (msg === 200) {
+                                    layer.msg("删除成功", {icon: 6});
                                   	layer.closeAll();
-                                    // 加载层 - 风格
+                                    // 重新加载
+                                    table.reload('tb-book', {
+                                        page: {
+                                          curr: 1 //重新从第 1 页开始
+                                        }
+                                      });
                                 } else {
                                     layer.msg("新增失败", {icon: 5});
+                                    layer.closeAll();
                                 }
                             }
                         })
 
       });
     } else if(obj.event === 'edit'){
-      console.log("点击编辑")
-      window.location.href ="http://localhost:8080/modeler.html?modelId=" + data.id
+       layer.open({
+            type: 1,
+            title: '编辑自定义表单',
+            area: ['420px', '330px'],
+            content: $('#edit_form').html()
+       })
+      form.render()//更新渲染表单
+      form.val('edit_form',{
+                //填充表单
+               key:data.key,
+               name:data.name,
+               desc:data.desc,
+               id:data.id
+       })
 
-    } else if(obj.event ==='export'){
-      console.log("点击导出")
-      window.location.href ="http://localhost:8080/model/export/" + data.id
-    } else if(obj.event ==='form'){
-      console.log("点击表单配置")
+       form.on('submit(formDemo)',function(messge){
+                 var str={
+                                "id":messge.field.id,
+                                "name":messge.field.name,
+                                "key":messge.field.key,
+                                "desc":messge.field.desc
+                          };
+                    $.ajax({
+                            url:"http://localhost:8080/designer/form/update",
+                            type:"POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(str),
+                            success:function (msg) {
+
+                                if (msg.code === 200) {
+                                    layer.msg("新增成功", {icon: 6});
+                                  	layer.closeAll();
+                                    // 重新加载
+                                    table.reload('tb-book', {
+                                        page: {
+                                          curr: 1 //重新从第 1 页开始
+                                        }
+                                      });
+
+                                } else {
+                                    layer.msg("新增失败", {icon: 5});
+                                    layer.closeAll();
+                                }
+                            }
+                        })
+                        return false;//阻止表单跳转,网页url不显示提交的参数。
+                    })
+
+
+    } else if(obj.event ==='check'){
+      var content = data.content;
+      console.log("内容:" + content)
       layer.open({
-                type: 1,
-                title: '流程节点表单设置',
-                area: ['520px', '420px'],
-                content: $('#node_table').html()
-            });
-      table.render({
-    elem: '#tb-node'
-    ,url: 'http://localhost:8080/node/findModelAssociationNode/' + data.id
-    ,method: 'post'
-    ,cols: [[ //表头
-      {field: 'id', title: 'ID', sort: true, fixed: 'left'}
-      ,{field: 'name', title: '流程节点名称', }
-      ,{field: 'formKey', title: '流程外置表单Key', }
-      ,{field: 'nodeTypeEnum', title: '节点类型', }
-      ,{fixed: 'right', title:'操作', toolbar: '#nodeDemo'}
-    ]]
-    ,parseData: function (res) { //将原始数据解析成 table 组件所规定的数据
-        console.log("节点数据返回:" +res.data)
-                return {
-                    "code": 0, //解析接口状态
-                    "data": res.data //解析数据列表
-                };
-     }
-  });
-
+        type: 1,
+        title: '查看自定义表单HTML',
+        area: ['420px', '330px'],
+        content: content
+       });
     }
-
-
   });
 
 	});
