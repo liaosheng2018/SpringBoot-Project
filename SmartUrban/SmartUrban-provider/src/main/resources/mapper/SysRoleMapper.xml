@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzg.mapper.SysRoleMapper">
+    <resultMap id="BaseResultMap" type="com.zzg.model.SysRole">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+    </resultMap>
+    <select id="findByUserId" resultMap="BaseResultMap">
+        select t_sys_role.id,t_sys_role.role_name, t_sys_role.role_code from t_sys_role left join t_sys_user_role on
+        t_sys_role.id = t_sys_user_role.role_id
+        where t_sys_user_role.user_id = #{userId}
+
+
+    </select>
+
+</mapper>

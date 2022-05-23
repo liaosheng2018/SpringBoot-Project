@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzg.mapper.SysAuthMapper">
+  <resultMap id="BaseResultMap" type="com.zzg.model.SysAuth">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="auth_name" jdbcType="VARCHAR" property="authName" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_sys_auth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zzg.model.SysAuth">
+    insert into t_sys_auth (id, auth_name, permission
+      )
+    values (#{id,jdbcType=BIGINT}, #{authName,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zzg.model.SysAuth">
+    update t_sys_auth
+    set auth_name = #{authName,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, auth_name, permission
+    from t_sys_auth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, auth_name, permission
+    from t_sys_auth
+  </select>
+</mapper>
