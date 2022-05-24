@@ -45,5 +45,11 @@
             <version>0.2.0</version>
         </dependency>
 
+        <!--集成Quartz-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

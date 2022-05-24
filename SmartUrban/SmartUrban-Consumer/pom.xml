@@ -48,6 +48,7 @@
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>0.2.0</version>
+
         </dependency>
 
         <!-- 集成SpringSecurity 安全框架 -->
@@ -70,6 +71,16 @@
             <version>1.2.47</version>
         </dependency>
 
+        <!-- 集成Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.2.0</version>
+        </dependency>
 
     </dependencies>
 
