@@ -1,2 +1,14 @@
 E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\User.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\SysUserMapper.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\SysUser.java
 E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\UserMapper.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\SysLog.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\SysRole.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\SysUserRole.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\SysAuth.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\model\SysRoleAuth.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\SysRoleAuthMapper.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\SysUserRoleMapper.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\SysLogMapper.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\SysAuthMapper.java
+E:\idea_workspace\SmartUrban\SmartUrban-Generator\src\main\java\com\zzg\mapper\SysRoleMapper.java

@@ -1,3 +1,15 @@
-com\zzg\mapper\UserMapper.class
-com\zzg\service\impl\UserServiceImpl.class
+com\zzg\quartz\conf\QuartzConfig.class
+com\zzg\mapper\SysAuthMapper.class
+com\zzg\service\impl\SysUserServiceImpl.class
+com\zzg\quartz\datasource\pool\DruidConnectionProvider.class
+com\zzg\mapper\SysRoleAuthMapper.class
+com\zzg\service\impl\SysAuthServiceImpl.class
+com\zzg\quartz\factory\QuartzJobFactory.class
+com\zzg\mapper\SysRoleMapper.class
+com\zzg\mapper\SysLogMapper.class
+com\zzg\quartz\service\impl\QuartzJobServiceImpl.class
+com\zzg\service\impl\SysLogServiceImpl.class
+com\zzg\mapper\SysUserMapper.class
+com\zzg\mapper\SysUserRoleMapper.class
+com\zzg\service\impl\SysRoleServiceImpl.class
 com\zzg\ProviderApplication.class

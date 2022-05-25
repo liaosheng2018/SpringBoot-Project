@@ -1,2 +1,13 @@
-com\zzg\service\UserService.class
-com\zzg\model\User.class
+com\zzg\model\SysRoleAuth.class
+com\zzg\service\SysRoleService.class
+com\zzg\model\SysUser.class
+com\zzg\service\SysAuthService.class
+com\zzg\model\SysAuth.class
+com\zzg\model\SysRole.class
+com\zzg\common\vo\Response.class
+com\zzg\model\SysLog.class
+com\zzg\quartz\QuartzJobService.class
+com\zzg\service\SysLogService.class
+com\zzg\common\dto\QuartzConfigDTO.class
+com\zzg\model\SysUserRole.class
+com\zzg\service\SysUserService.class

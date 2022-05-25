@@ -82,6 +82,13 @@
             <version>3.2.0</version>
         </dependency>
 
+        <!--集成Redisson 分布式锁-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.13.6</version>
+        </dependency>
+
     </dependencies>
 
 </project>
