@@ -1,10 +1,12 @@
 package com.zzg.redis.conf;
 
+import com.zzg.redis.condition.RedisCacheUtilCondition;
 import com.zzg.redis.inter.RedisCacheInter;
 import com.zzg.redis.inter.impl.RedisCacheUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -73,6 +75,7 @@ public class RedisConfig {
 
     // 自定义redis 工具类
     @Bean(name = "redisCacheUtil")
+    @Conditional(RedisCacheUtilCondition.class)
     public RedisCacheUtil getRedisCacheUtil(RedisTemplate redisTemplate) {
         return new RedisCacheUtil(redisTemplate);
     }

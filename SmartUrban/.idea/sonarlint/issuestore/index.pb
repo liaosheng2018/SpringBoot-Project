@@ -3,8 +3,6 @@ j
 :SmartUrban-Generator/src/main/java/com/zzg/model/User.java,4\1\41461c3f861f3da0813d2566a164e0b700dd92f0
 q
 ASmartUrban-Generator/src/main/java/com/zzg/mapper/UserMapper.java,6\4\64975e78989f0c56e36da06185abfae7a6c55815
-I
-SmartUrban-Common/pom.xml,4\0\40d3b68d70d04958d4af1e56a9cec2ce7c1febbf
 ã
 [SmartUrban-Consumer/src/main/java/com/zzg/security/filter/JwtAuthenticationTokenFilter.java,2\0\20a8f440871585e06df487687bb47fea08b6ae71
 ~
@@ -29,9 +27,13 @@ w
 GSmartUrban-provider/src/main/java/com/zzg/quartz/conf/QuartzConfig.java,6\9\695b754b2202dc8b9ad0eec872d159e6ab3976de
 á
 WSmartUrban-provider/src/main/java/com/zzg/quartz/service/impl/QuartzJobServiceImpl.java,8\1\810bd6c62c42248552b27efff52f19c643a19c3b
-~
-NSmartUrban-provider/src/main/java/com/zzg/service/impl/SysAuthServiceImpl.java,a\c\ac1ab44274cd35b65d7751ca9937f6280dd16558
 t
 DSmartUrban-Common/src/main/java/com/zzg/quartz/QuartzJobService.java,b\3\b3661fd8bee2d3a0f493c59c242e605d936ab72f
 w
 GSmartUrban-Common/src/main/java/com/zzg/common/dto/QuartzConfigDTO.java,f\3\f3cd3c37529e30e4e1a61e8dbfd2839070349d29
+z
+JSmartUrban-Consumer/src/main/java/com/zzg/redis/inter/RedisCacheInter.java,2\7\272d49cb7196f17f7f8bfbfbdf9da5a59dc3fd23
+ç
+]SmartUrban-provider/src/main/java/com/zzg/quartz/datasource/pool/DruidConnectionProvider.java,c\e\ce4af75a33436867af50a872a3fa7a0c3c50aca7
+É
+SSmartUrban-Consumer/src/main/java/com/zzg/security/handler/UserNotLoginHandler.java,5\4\5480fb909c79f6673472249618b786e9c91beebd
