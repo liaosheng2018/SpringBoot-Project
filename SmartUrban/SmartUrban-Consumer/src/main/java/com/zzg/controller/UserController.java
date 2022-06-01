@@ -1,17 +1,16 @@
 package com.zzg.controller;
 
-import cn.hutool.core.convert.Convert;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.zzg.model.SysUser;
 import com.zzg.redis.inter.impl.RedisCacheUtil;
-import com.zzg.service.SysUserService;
+import com.zzg.quartz.service.SysUserService;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 
@@ -30,7 +29,8 @@ public class UserController {
     public static final String APPLICATION_LOCK = "APPLICATION_LOCK";
 
     @RequestMapping("/hello")
-    public String get() {
+    @ResponseBody
+    public Object  get() {
         RLock rlock = null;
         try{
             rlock = redissonClient.getLock(APPLICATION_LOCK);

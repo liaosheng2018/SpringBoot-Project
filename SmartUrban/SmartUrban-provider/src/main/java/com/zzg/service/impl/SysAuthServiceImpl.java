@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.zzg.mapper.SysAuthMapper;
 import com.zzg.model.SysAuth;
-import com.zzg.service.SysAuthService;
+import com.zzg.quartz.service.SysAuthService;
 import org.springframework.stereotype.Component;
 
 @Service

@@ -2,14 +2,12 @@ package com.zzg.security.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.zzg.model.SysRole;
 import com.zzg.model.SysUser;
 import com.zzg.security.entity.UserDetails;
-import com.zzg.service.SysRoleService;
-import com.zzg.service.SysUserService;
+import com.zzg.quartz.service.SysRoleService;
+import com.zzg.quartz.service.SysUserService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
