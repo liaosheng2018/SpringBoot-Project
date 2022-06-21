@@ -1,2 +1,10 @@
+com\zzg\mapper\StudentMapper.class
+com\zzg\service\impl\xaServiceImpl.class
+com\zzg\service\xaService.class
+com\zzg\model\Student.class
+com\zzg\controller\XAController.class
 com\zzg\controller\FirstController.class
+com\zzg\model\User.class
+com\zzg\mapper\UserMapper.class
+com\zzg\controller\StudentController.class
 com\zzg\ApplicationStart.class

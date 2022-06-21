@@ -59,3 +59,11 @@ ISmartUrban-Consumer/src/main/java/com/zzg/controller/QuartzContoller.java,e\9\
 NSmartUrban-Consumer/src/main/java/com/zzg/security/conf/WebSecurityConfig.java,9\d\9d94e843d906790dff354ab0fe3c025af90e02cc
 r
 BSmartUrban-provider/src/main/java/com/zzg/ProviderApplication.java,8\a\8a47345de875b0ba3a4aa151ad7fa0bf3c57c2f4
+x
+HSmartUrban-Consumer/src/main/java/com/zzg/controller/UserController.java,4\a\4afee5983f3187ad4916109a131ed93fdd4bb0e5
+K
+SmartUrban-Consumer/pom.xml,3\9\39be3b1daf7c6f1f778342320f3c956a15801f80
+n
+>SmartUrban-Consumer/src/main/java/com/zzg/aop/ResponseAop.java,1\c\1c92b4d15ac9e2948d96b076b9d3c7dc35a378fc
+m
+=SmartUrban-Common/src/main/java/com/zzg/enums/ResultCode.java,a\b\ab6e26e28f1a63e4cacd574543379f2978b4bc1a
